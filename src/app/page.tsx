@@ -1,65 +1,163 @@
-import Image from "next/image";
+import { TableShowcaseSection } from "@/features/table-configurator/components/TableShowcaseSection";
+
+const navItems = [
+  { label: "Pocetna", href: "#pocetna" },
+  { label: "Prostor", href: "#prostor" },
+  { label: "Oprema", href: "#oprema" },
+  { label: "Setovi", href: "#setovi" },
+  { label: "Galerija", href: "#galerija" },
+  { label: "Kontakt", href: "#kontakt" },
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <main>
+      <header className="fixed left-0 right-0 top-0 z-50 border-b border-line bg-background/80 px-5 backdrop-blur sm:px-8 lg:px-12">
+        <nav className="mx-auto flex h-20 max-w-7xl items-center justify-between">
+          <a href="#pocetna" className="font-display text-2xl font-semibold">
+            Event Rent
+          </a>
+          <div className="hidden items-center gap-8 text-sm text-muted md:flex">
+            {navItems.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className="transition hover:text-gold"
+              >
+                {item.label}
+              </a>
+            ))}
+          </div>
+          <a
+            href="#kontakt"
+            className="border border-gold px-4 py-2 text-sm text-gold transition hover:bg-gold hover:text-black"
+          >
+            Kontakt
+          </a>
+        </nav>
+      </header>
+
+      <section id="pocetna" className="min-h-screen px-5 pt-32 sm:px-8 lg:px-12">
+        <div className="mx-auto flex max-w-7xl flex-col justify-end pb-20 pt-28">
+          <p className="mb-6 text-sm uppercase tracking-[0.36em] text-gold">
+            Proslave na otvorenom
+          </p>
+          <h1 className="max-w-5xl font-display text-6xl font-semibold leading-none text-foreground sm:text-7xl lg:text-8xl">
+            Prostor i oprema za proslave kod nas ili na vasoj lokaciji.
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
+          <p className="mt-8 max-w-2xl text-lg leading-8 text-muted">
+            Iznajmljivanje dvorista, pagoda, paviljona, stolova, stolica,
+            barskih stolova i kompletnog seta za posluzivanje.
+          </p>
+          <div className="mt-10 flex flex-col gap-3 sm:flex-row">
             <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+              href="#prostor"
+              className="border border-gold px-6 py-4 text-center text-gold"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
+              Pogledajte ponudu
+            </a>
             <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+              href="#kontakt"
+              className="border border-line px-6 py-4 text-center"
             >
-              Learning
-            </a>{" "}
-            center.
+              Kontaktirajte nas
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section id="prostor" className="px-5 py-24 sm:px-8 lg:px-12">
+        <div className="mx-auto max-w-7xl">
+          <p className="mb-4 text-sm uppercase tracking-[0.32em] text-gold">
+            Kod nas ili kod vas
+          </p>
+          <h2 className="font-display text-5xl font-semibold">
+            Dva nacina organizacije
+          </h2>
+          <div className="mt-10 grid gap-5 md:grid-cols-2">
+            <article className="border border-line bg-surface p-8">
+              <h3 className="font-display text-3xl">Proslava kod nas</h3>
+              <p className="mt-4 leading-7 text-muted">
+                Uredjen prostor na otvorenom za porodicne i svecane proslave.
+              </p>
+            </article>
+            <article className="border border-line bg-surface p-8">
+              <h3 className="font-display text-3xl">Oprema kod vas</h3>
+              <p className="mt-4 leading-7 text-muted">
+                Pagode, stolovi, stolice, barski stolovi i setovi za
+                posluzivanje mogu se organizovati na lokaciji po vasem izboru.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="oprema" className="px-5 py-24 sm:px-8 lg:px-12">
+        <div className="mx-auto max-w-7xl">
+          <p className="mb-4 text-sm uppercase tracking-[0.32em] text-gold">
+            Oprema
+          </p>
+          <h2 className="font-display text-5xl font-semibold">
+            Sve sto je potrebno za uredno postavljen dogadjaj
+          </h2>
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              "Pagode 5x5 m",
+              "Paviljoni",
+              "Stolovi i stolice",
+              "Barski stolovi",
+              "Ventilatori",
+            ].map((item) => (
+              <article
+                key={item}
+                className="border border-line bg-white/[0.03] p-6"
+              >
+                <h3 className="text-lg font-semibold">{item}</h3>
+                <p className="mt-3 text-sm leading-6 text-muted">
+                  Elegantno resenje za proslave na otvorenom, prilagodjeno
+                  prostoru i broju gostiju.
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <TableShowcaseSection />
+
+      <section id="galerija" className="px-5 py-24 sm:px-8 lg:px-12">
+        <div className="mx-auto max-w-7xl">
+          <p className="mb-4 text-sm uppercase tracking-[0.32em] text-gold">
+            Galerija
+          </p>
+          <h2 className="font-display text-5xl font-semibold">
+            Detalji koji stvaraju utisak
+          </h2>
+          <div className="mt-10 grid gap-5 md:grid-cols-3">
+            {[1, 2, 3].map((item) => (
+              <div
+                key={item}
+                className="aspect-[4/5] border border-line bg-surface"
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="kontakt" className="px-5 py-24 sm:px-8 lg:px-12">
+        <div className="mx-auto max-w-4xl text-center">
+          <p className="mb-4 text-sm uppercase tracking-[0.32em] text-gold">
+            Kontakt
+          </p>
+          <h2 className="font-display text-5xl font-semibold">
+            Planirate proslavu?
+          </h2>
+          <p className="mt-6 leading-8 text-muted">
+            Javite nam da li proslavu planirate kod nas ili na vasoj lokaciji,
+            datum dogadjaja i okviran broj gostiju.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+      </section>
+    </main>
   );
 }
