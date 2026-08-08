@@ -1,12 +1,13 @@
 @import "tailwindcss";
 
 :root {
-  --background: #070707;
-  --foreground: #f7f2e8;
-  --muted: #b9b2a7;
-  --gold: #c7a35a;
-  --surface: #111111;
-  --line: rgba(247, 242, 232, 0.14);
+  --background: #f7f3eb;
+  --foreground: #2a251f;
+  --muted: #746d64;
+  --gold: #b58a3b;
+  --surface: #fffdf8;
+  --surface-alt: #f0e9de;
+  --line: rgba(75, 57, 34, 0.16);
 }
 
 @theme inline {
@@ -15,6 +16,7 @@
   --color-muted: var(--muted);
   --color-gold: var(--gold);
   --color-surface: var(--surface);
+  --color-surface-alt: var(--surface-alt);
   --color-line: var(--line);
   --font-sans: var(--font-sans);
   --font-display: var(--font-display);
@@ -34,6 +36,34 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), Arial, sans-serif;
+}
+
+::selection {
+  background: var(--gold);
+  color: #fffdf8;
+}
+
+.hero-slideshow-media {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+@media (min-width: 1024px) {
+  .hero-slideshow-media {
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 18%,
+      black 100%
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 18%,
+      black 100%
+    );
+  }
 }
 
 section {
