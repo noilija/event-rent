@@ -11,9 +11,7 @@ export function Header() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isDrawerClosing, setIsDrawerClosing] = useState(false);
   const [isHeroVisible, setIsHeroVisible] = useState(true);
-  const closeTimeoutRef = useRef<ReturnType<typeof window.setTimeout> | null>(
-    null,
-  );
+  const closeTimeoutRef = useRef<number | null>(null);
 
   function clearCloseTimeout() {
     if (!closeTimeoutRef.current) return;
