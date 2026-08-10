@@ -3,8 +3,8 @@ import { TableSetCarousel } from "./TableSetCarousel";
 
 export function TableShowcaseSection() {
   return (
-    <section id="setovi" className="bg-background px-5 py-16 sm:px-8 sm:py-20 lg:px-12">
-      <div className="mx-auto max-w-7xl">
+    <section id="setovi" className="bg-background px-3 py-16 sm:px-4 sm:py-20 lg:px-6">
+      <div className="w-full">
         <TableSetCarousel setups={configurableTableSetups} />
       </div>
     </section>

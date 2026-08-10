@@ -1,14 +1,123 @@
+"use client";
+
 import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
 import { navigationItems } from "@/config/navigation";
 
+const drawerItems = navigationItems;
+const drawerAnimationMs = 300;
+
 export function Header() {
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [isDrawerClosing, setIsDrawerClosing] = useState(false);
+  const [isHeroVisible, setIsHeroVisible] = useState(true);
+  const closeTimeoutRef = useRef<ReturnType<typeof window.setTimeout> | null>(
+    null,
+  );
+
+  function clearCloseTimeout() {
+    if (!closeTimeoutRef.current) return;
+
+    window.clearTimeout(closeTimeoutRef.current);
+    closeTimeoutRef.current = null;
+  }
+
+  function openDrawer() {
+    clearCloseTimeout();
+    setIsDrawerClosing(false);
+    setIsDrawerOpen(true);
+  }
+
+  function closeDrawer() {
+    if (!isDrawerOpen && !isDrawerClosing) return;
+
+    clearCloseTimeout();
+    setIsDrawerOpen(false);
+    setIsDrawerClosing(true);
+    closeTimeoutRef.current = window.setTimeout(() => {
+      setIsDrawerClosing(false);
+      closeTimeoutRef.current = null;
+    }, drawerAnimationMs);
+  }
+
+  function toggleDrawer() {
+    if (isDrawerOpen) {
+      closeDrawer();
+      return;
+    }
+
+    openDrawer();
+  }
+
+  useEffect(() => {
+    function updateHeaderVisibility() {
+      const hero = document.getElementById("pocetna");
+      const nextSection = hero?.nextElementSibling;
+
+      if (!nextSection) {
+        setIsHeroVisible(window.scrollY < window.innerHeight * 0.85);
+        return;
+      }
+
+      const nextSectionTop = nextSection.getBoundingClientRect().top;
+      const nextHeroVisible = nextSectionTop > 80;
+
+      setIsHeroVisible(nextHeroVisible);
+      if (nextHeroVisible) {
+        setIsDrawerOpen(false);
+      }
+    }
+
+    updateHeaderVisibility();
+    window.addEventListener("scroll", updateHeaderVisibility, { passive: true });
+    window.addEventListener("resize", updateHeaderVisibility);
+
+    return () => {
+      window.removeEventListener("scroll", updateHeaderVisibility);
+      window.removeEventListener("resize", updateHeaderVisibility);
+      if (closeTimeoutRef.current) {
+        window.clearTimeout(closeTimeoutRef.current);
+      }
+    };
+  }, []);
+
+  const isDrawerCoveringButton = isDrawerOpen || isDrawerClosing;
+
   return (
-    <header className="fixed left-0 right-0 top-0 z-50 border-b border-line bg-background/80 px-5 backdrop-blur sm:px-8 lg:px-12">
-      <nav className="mx-auto flex h-20 max-w-7xl items-center justify-between">
+    <header
+      className={`fixed left-0 right-0 top-0 z-50 px-3 transition-colors duration-300 sm:px-4 lg:px-6 ${
+        isHeroVisible
+          ? "border-b border-transparent bg-transparent"
+          : "border-b border-line bg-background/80 backdrop-blur"
+      }`}
+    >
+      <nav className="relative z-20 flex h-20 w-full items-center justify-between">
+        <button
+          type="button"
+          onClick={toggleDrawer}
+          className={`flex h-11 w-11 items-center justify-center border transition ${
+            isDrawerCoveringButton
+              ? "border-transparent bg-transparent text-foreground shadow-none"
+              : isHeroVisible
+              ? "border-white/55 bg-transparent text-white shadow-[0_2px_18px_rgba(0,0,0,0.28)] hover:border-white hover:bg-white/10"
+              : "border-line bg-surface/80 text-foreground hover:border-gold hover:text-gold"
+          }`}
+          aria-label={isDrawerOpen ? "Zatvori meni" : "Otvori meni"}
+          aria-expanded={isDrawerOpen}
+          aria-controls="site-navigation-drawer"
+        >
+          <span className="flex w-5 flex-col gap-1.5" aria-hidden="true">
+            <span className="h-px w-full bg-current" />
+            <span className="h-px w-full bg-current" />
+            <span className="h-px w-full bg-current" />
+          </span>
+        </button>
+
         <a
           href="#pocetna"
-          className="relative block h-14 w-14 shrink-0"
+          className="absolute left-1/2 top-1/2 block h-14 w-14 -translate-x-1/2 -translate-y-1/2"
           aria-label="Pocetna"
+          onClick={closeDrawer}
         >
           <Image
             src="/brand/logo.png"
@@ -20,25 +129,39 @@ export function Header() {
           />
         </a>
 
-        <div className="hidden items-center gap-8 text-sm text-muted md:flex">
-          {navigationItems.map((item) => (
+        <div className="flex items-center">
+          <a
+            href="#kontakt"
+            className={`border px-4 py-2 text-sm transition ${
+              isHeroVisible
+                ? "border-white/55 bg-transparent text-white shadow-[0_2px_18px_rgba(0,0,0,0.28)] [text-shadow:0_2px_12px_rgba(0,0,0,0.8)] hover:border-white hover:bg-white/10"
+                : "border-gold text-gold hover:bg-gold hover:text-black"
+            }`}
+          >
+            Kontakt
+          </a>
+        </div>
+      </nav>
+
+      <div
+        className={`fixed left-0 top-0 z-10 h-screen w-[min(82vw,320px)] border-r border-line bg-surface pt-20 shadow-[18px_0_48px_rgba(55,42,20,0.16)] transition-transform duration-300 ease-out ${
+          isDrawerOpen ? "translate-x-0" : "-translate-x-full"
+        }`}
+        id="site-navigation-drawer"
+      >
+        <div className="flex h-full flex-col py-6">
+          {drawerItems.map((item) => (
             <a
               key={item.href}
               href={item.href}
-              className="transition hover:text-gold"
+              onClick={closeDrawer}
+              className="border-b border-line px-6 py-5 font-display text-3xl text-foreground transition hover:bg-surface-alt hover:text-gold"
             >
               {item.label}
             </a>
           ))}
         </div>
-
-        <a
-          href="#kontakt"
-          className="border border-gold px-4 py-2 text-sm text-gold transition hover:bg-gold hover:text-black"
-        >
-          Kontakt
-        </a>
-      </nav>
+      </div>
     </header>
   );
 }

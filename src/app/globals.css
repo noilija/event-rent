@@ -49,23 +49,12 @@ body {
   overflow: hidden;
 }
 
-@media (min-width: 1024px) {
-  .hero-slideshow-media {
-    -webkit-mask-image: linear-gradient(
-      to right,
-      transparent 0%,
-      black 18%,
-      black 100%
-    );
-    mask-image: linear-gradient(
-      to right,
-      transparent 0%,
-      black 18%,
-      black 100%
-    );
-  }
+section {
+  scroll-margin-top: 0;
 }
 
-section {
-  scroll-margin-top: 96px;
+main > section:not(#pocetna) {
+  position: relative;
+  z-index: 10;
+  background: var(--background);
 }

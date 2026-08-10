@@ -151,7 +151,7 @@ export function TableSetCarousel({ setups }: TableSetCarouselProps) {
         </p>
       </div>
 
-      <div className="relative isolate overflow-hidden rounded-[2rem] bg-[#17140f] shadow-[0_28px_70px_rgba(55,42,20,0.18)]">
+      <div className="relative isolate overflow-hidden bg-[#17140f] shadow-[0_28px_70px_rgba(55,42,20,0.18)]">
         <div className="relative aspect-[3/2] min-h-[430px] w-full sm:min-h-[530px]">
           <Image
             src="/set_assets/scenes/round-table-empty-topdown-v2.png"

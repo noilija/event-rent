@@ -4,7 +4,6 @@ import { ContactSection } from "@/components/sections/contact/ContactSection";
 import { EquipmentSection } from "@/components/sections/equipment/EquipmentSection";
 import { GallerySection } from "@/components/sections/gallery/GallerySection";
 import { HeroSection } from "@/components/sections/hero/HeroSection";
-import { ServiceModesSection } from "@/components/sections/service-modes/ServiceModesSection";
 import { TableShowcaseSection } from "@/features/table-configurator/components/TableShowcaseSection";
 
 export default function Home() {

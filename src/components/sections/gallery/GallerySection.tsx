@@ -3,7 +3,7 @@ import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
 
 export function GallerySection() {
   return (
-    <section id="galerija" className="px-5 py-24 sm:px-8 lg:px-12">
+    <section id="galerija" className="px-3 py-24 sm:px-4 lg:px-6">
       <Container>
         <SectionEyebrow>Galerija</SectionEyebrow>
         <h2 className="font-display text-5xl font-semibold">

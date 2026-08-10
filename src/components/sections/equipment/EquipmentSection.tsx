@@ -4,11 +4,11 @@ import { equipmentItems } from "./equipment.data";
 
 export function EquipmentSection() {
   return (
-    <section id="oprema" className="px-5 py-24 sm:px-8 lg:px-12">
+    <section id="oprema" className="px-3 py-24 sm:px-4 lg:px-6">
       <Container>
         <SectionEyebrow>Oprema</SectionEyebrow>
         <h2 className="font-display text-5xl font-semibold">
-          Sve sto je potrebno za uredno postavljen dogadjaj
+          Oprema koju nudimo
         </h2>
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {equipmentItems.map((item) => (

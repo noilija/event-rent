@@ -39,7 +39,7 @@ export function HeroSlideshow() {
 
   return (
     <div
-      className="relative isolate h-[58vh] min-h-[390px] sm:h-[66vh] lg:h-[min(72vh,760px)]"
+      className="relative isolate h-[76vh] min-h-[560px] sm:h-[82vh] lg:h-[min(86vh,900px)]"
       aria-label="Fotografije Event Rent ponude"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
@@ -54,7 +54,7 @@ export function HeroSlideshow() {
             alt={slide.alt}
             fill
             priority={index === 0}
-            sizes="(max-width: 1023px) 100vw, 68vw"
+            sizes="100vw"
             className="object-cover motion-reduce:transition-none"
             style={{
               opacity: index === activeIndex ? 1 : 0,
@@ -66,7 +66,7 @@ export function HeroSlideshow() {
           />
         ))}
 
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent" />
+        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.34),rgba(0,0,0,0.48)),radial-gradient(ellipse_at_center,rgba(0,0,0,0.12),rgba(0,0,0,0.46))]" />
       </div>
 
       <div className="absolute bottom-5 left-5 right-5 z-10 flex items-center justify-between sm:bottom-7 sm:left-7 sm:right-7">

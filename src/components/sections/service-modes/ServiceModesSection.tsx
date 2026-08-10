@@ -3,7 +3,7 @@ import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
 
 export function ServiceModesSection() {
   return (
-    <section id="prostor" className="px-5 py-24 sm:px-8 lg:px-12">
+    <section id="prostor" className="px-3 py-24 sm:px-4 lg:px-6">
       <Container>
         <SectionEyebrow>Kod nas ili kod vas</SectionEyebrow>
         <h2 className="font-display text-5xl font-semibold">
