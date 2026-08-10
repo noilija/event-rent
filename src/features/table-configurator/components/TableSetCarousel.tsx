@@ -137,22 +137,22 @@ export function TableSetCarousel({ setups }: TableSetCarouselProps) {
 
   return (
     <>
-      <div className="mb-8 grid gap-5 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+      <div className="mb-7 grid gap-4 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
         <div aria-live="polite">
-          <p className="mb-4 text-sm uppercase tracking-[0.32em] text-gold">Postavka stola</p>
-          <h2 className="font-display text-4xl font-semibold leading-none text-foreground sm:text-5xl">
+          <p className="mb-3 text-xs uppercase tracking-[0.24em] text-gold sm:mb-4 sm:text-sm sm:tracking-[0.32em]">Postavka stola</p>
+          <h2 className="font-display text-3xl font-semibold leading-tight text-foreground sm:text-5xl sm:leading-none">
             {activeSetup.name}
           </h2>
-          <p className="mt-4 text-lg text-muted">{activeSetup.subtitle}</p>
+          <p className="mt-3 text-base text-muted sm:mt-4 sm:text-lg">{activeSetup.subtitle}</p>
         </div>
 
-        <p className="max-w-2xl leading-7 text-muted lg:justify-self-end">
+        <p className="max-w-2xl text-sm leading-6 text-muted sm:text-base sm:leading-7 lg:justify-self-end">
           {activeSetup.description}
         </p>
       </div>
 
       <div className="relative isolate overflow-hidden bg-[#17140f] shadow-[0_28px_70px_rgba(55,42,20,0.18)]">
-        <div className="relative aspect-[3/2] min-h-[430px] w-full sm:min-h-[530px]">
+        <div className="relative aspect-[4/5] min-h-[360px] w-full sm:aspect-[3/2] sm:min-h-[530px]">
           <Image
             src="/set_assets/scenes/round-table-empty-topdown-v2.png"
             alt="Prazan okrugli sto za prikaz različitih postavki"
@@ -167,18 +167,18 @@ export function TableSetCarousel({ setups }: TableSetCarouselProps) {
           <SetLayer setup={outgoingSetup} position={turntablePositions.outgoing} layerRef={outgoingLayerRef} />
           <SetLayer setup={activeSetup} position={turntablePositions.active} layerRef={activeLayerRef} isActive />
 
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 z-50 h-44 bg-gradient-to-t from-black/55 to-transparent" />
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 z-50 h-40 bg-gradient-to-t from-black/65 to-transparent sm:h-44 sm:from-black/55" />
 
-          <div className="absolute left-5 top-5 z-60 sm:left-7 sm:top-6">
+          <div className="absolute left-4 top-4 z-60 sm:left-7 sm:top-6">
             <p className="text-xs uppercase tracking-[0.3em] text-white/60">Rotirajući sto</p>
           </div>
 
-          <div className="absolute bottom-5 left-5 right-5 z-60 flex items-end justify-between text-white sm:bottom-6 sm:left-7 sm:right-7">
-            <div>
-              <p className="font-display text-2xl font-semibold">{activeSetup.name}</p>
-              <p className="mt-1 text-sm text-white/70">{activeSetup.subtitle}</p>
+          <div className="absolute bottom-4 left-4 right-4 z-60 flex items-end justify-between gap-4 text-white sm:bottom-6 sm:left-7 sm:right-7">
+            <div className="min-w-0">
+              <p className="font-display text-xl font-semibold leading-tight sm:text-2xl">{activeSetup.name}</p>
+              <p className="mt-1 text-xs leading-5 text-white/70 sm:text-sm">{activeSetup.subtitle}</p>
             </div>
-            <span className="text-xs uppercase tracking-[0.28em] text-gold">
+            <span className="shrink-0 text-xs uppercase tracking-[0.22em] text-gold sm:tracking-[0.28em]">
               {String(activeIndex + 1).padStart(2, "0")}
             </span>
           </div>
@@ -188,7 +188,7 @@ export function TableSetCarousel({ setups }: TableSetCarouselProps) {
           type="button"
           onClick={() => showAdjacentSetup(-1)}
           disabled={!canRotate || isAnimating}
-          className="absolute left-3 top-1/2 z-70 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-gold/70 bg-black/45 text-2xl text-white backdrop-blur transition hover:border-gold hover:bg-black/65 disabled:cursor-not-allowed disabled:opacity-30 sm:left-6"
+          className="absolute left-3 top-1/2 z-70 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-gold/70 bg-black/45 text-xl text-white backdrop-blur transition hover:border-gold hover:bg-black/65 disabled:cursor-not-allowed disabled:opacity-30 sm:left-6 sm:h-12 sm:w-12 sm:text-2xl"
           aria-label="Rotiraj sto ulevo"
         >
           ←
@@ -198,7 +198,7 @@ export function TableSetCarousel({ setups }: TableSetCarouselProps) {
           type="button"
           onClick={() => showAdjacentSetup(1)}
           disabled={!canRotate || isAnimating}
-          className="absolute right-3 top-1/2 z-70 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-gold/70 bg-black/45 text-2xl text-white backdrop-blur transition hover:border-gold hover:bg-black/65 disabled:cursor-not-allowed disabled:opacity-30 sm:right-6"
+          className="absolute right-3 top-1/2 z-70 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-gold/70 bg-black/45 text-xl text-white backdrop-blur transition hover:border-gold hover:bg-black/65 disabled:cursor-not-allowed disabled:opacity-30 sm:right-6 sm:h-12 sm:w-12 sm:text-2xl"
           aria-label="Rotiraj sto udesno"
         >
           →

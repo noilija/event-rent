@@ -84,16 +84,16 @@ export function Header() {
   return (
     <header
       className={`fixed left-0 right-0 top-0 z-50 px-3 transition-colors duration-300 sm:px-4 lg:px-6 ${
-        isHeroVisible
+        isHeroVisible && !isDrawerCoveringButton
           ? "border-b border-transparent bg-transparent"
           : "border-b border-line bg-background/80 backdrop-blur"
       }`}
     >
-      <nav className="relative z-20 flex h-20 w-full items-center justify-between">
+      <nav className="relative z-20 flex h-16 w-full items-center justify-between sm:h-20">
         <button
           type="button"
           onClick={toggleDrawer}
-          className={`flex h-11 w-11 items-center justify-center border transition ${
+          className={`flex h-10 w-10 items-center justify-center border transition sm:h-11 sm:w-11 ${
             isDrawerCoveringButton
               ? "border-transparent bg-transparent text-foreground shadow-none"
               : isHeroVisible
@@ -113,7 +113,7 @@ export function Header() {
 
         <a
           href="#pocetna"
-          className="absolute left-1/2 top-1/2 block h-14 w-14 -translate-x-1/2 -translate-y-1/2"
+          className="absolute left-1/2 top-1/2 block h-11 w-11 -translate-x-1/2 -translate-y-1/2 sm:h-14 sm:w-14"
           aria-label="Pocetna"
           onClick={closeDrawer}
         >
@@ -130,7 +130,9 @@ export function Header() {
         <div className="flex items-center">
           <a
             href="#kontakt"
-            className={`border px-4 py-2 text-sm font-medium transition duration-200 ${
+            className={`border px-3 py-2 text-xs font-medium transition duration-200 sm:px-4 sm:text-sm ${
+              isDrawerCoveringButton ? "pointer-events-none opacity-0" : ""
+            } ${
               isHeroVisible
                 ? "border-white/35 bg-white/[0.04] text-white/90 shadow-[0_10px_30px_rgba(0,0,0,0.14)] backdrop-blur-[2px] [text-shadow:0_1px_10px_rgba(0,0,0,0.45)] hover:border-white/70 hover:bg-white/[0.09] hover:text-white"
                 : "border-foreground/20 bg-transparent text-foreground/80 hover:border-foreground/45 hover:bg-foreground/[0.04] hover:text-foreground"
@@ -142,7 +144,7 @@ export function Header() {
       </nav>
 
       <div
-        className={`fixed left-0 top-0 z-10 h-screen w-[min(82vw,320px)] border-r border-line bg-surface pt-20 shadow-[18px_0_48px_rgba(55,42,20,0.16)] transition-transform duration-300 ease-out ${
+        className={`fixed left-0 top-0 z-10 h-screen w-[min(84vw,320px)] border-r border-line bg-surface pt-16 shadow-[18px_0_48px_rgba(55,42,20,0.16)] transition-transform duration-300 ease-out sm:pt-20 ${
           isDrawerOpen ? "translate-x-0" : "-translate-x-full"
         }`}
         id="site-navigation-drawer"
@@ -153,7 +155,7 @@ export function Header() {
               key={item.href}
               href={item.href}
               onClick={closeDrawer}
-              className="border-b border-line px-6 py-5 font-display text-3xl text-foreground transition hover:bg-surface-alt hover:text-gold"
+              className="border-b border-line px-5 py-4 font-display text-2xl text-foreground transition hover:bg-surface-alt hover:text-gold sm:px-6 sm:py-5 sm:text-3xl"
             >
               {item.label}
             </a>

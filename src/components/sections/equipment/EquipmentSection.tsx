@@ -4,10 +4,10 @@ import { equipmentItems } from "./equipment.data";
 
 export function EquipmentSection() {
   return (
-    <section id="oprema" className="px-3 py-24 sm:px-4 lg:px-6">
+    <section id="oprema" className="px-4 py-16 sm:px-4 sm:py-24 lg:px-6">
       <Container>
         <SectionEyebrow>Oprema</SectionEyebrow>
-        <h2 className="font-display text-5xl font-semibold">
+        <h2 className="font-display text-4xl font-semibold leading-tight sm:text-5xl">
           Oprema koju nudimo
         </h2>
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">

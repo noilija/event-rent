@@ -39,7 +39,7 @@ export function HeroSlideshow() {
 
   return (
     <div
-      className="relative isolate h-[76vh] min-h-[560px] sm:h-[82vh] lg:h-[min(86vh,900px)]"
+      className="relative isolate min-h-[100svh] sm:h-[82vh] sm:min-h-[560px] lg:h-[min(86vh,900px)]"
       aria-label="Fotografije Event Rent ponude"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
@@ -66,11 +66,11 @@ export function HeroSlideshow() {
           />
         ))}
 
-        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.34),rgba(0,0,0,0.48)),radial-gradient(ellipse_at_center,rgba(0,0,0,0.12),rgba(0,0,0,0.46))]" />
+        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.58),rgba(0,0,0,0.36)_38%,rgba(0,0,0,0.58)),radial-gradient(ellipse_at_center,rgba(0,0,0,0.08),rgba(0,0,0,0.5))] sm:bg-[linear-gradient(180deg,rgba(0,0,0,0.34),rgba(0,0,0,0.48)),radial-gradient(ellipse_at_center,rgba(0,0,0,0.12),rgba(0,0,0,0.46))]" />
       </div>
 
-      <div className="absolute bottom-5 left-5 right-5 z-10 flex items-center justify-between sm:bottom-7 sm:left-7 sm:right-7">
-        <span className="text-xs uppercase tracking-[0.28em] text-white/85">
+      <div className="absolute bottom-4 left-5 right-5 z-10 flex items-center justify-between gap-5 sm:bottom-7 sm:left-7 sm:right-7">
+        <span className="text-[0.64rem] uppercase tracking-[0.2em] text-white/85 sm:text-xs sm:tracking-[0.28em]">
           Event Rent
         </span>
 

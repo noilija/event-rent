@@ -18,7 +18,7 @@ export function ButtonLink({
 
   return (
     <a
-      className={`border px-6 py-4 text-center transition hover:border-gold hover:text-gold ${variantClass} ${className}`}
+      className={`border px-4 py-3 text-center text-sm transition hover:border-gold hover:text-gold sm:px-6 sm:py-4 sm:text-base ${variantClass} ${className}`}
       {...props}
     >
       {children}
