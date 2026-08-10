@@ -132,10 +132,10 @@ export function Header() {
         <div className="flex items-center">
           <a
             href="#kontakt"
-            className={`border px-4 py-2 text-sm transition ${
+            className={`border px-4 py-2 text-sm font-medium transition duration-200 ${
               isHeroVisible
-                ? "border-white/55 bg-transparent text-white shadow-[0_2px_18px_rgba(0,0,0,0.28)] [text-shadow:0_2px_12px_rgba(0,0,0,0.8)] hover:border-white hover:bg-white/10"
-                : "border-gold text-gold hover:bg-gold hover:text-black"
+                ? "border-white/35 bg-white/[0.04] text-white/90 shadow-[0_10px_30px_rgba(0,0,0,0.14)] backdrop-blur-[2px] [text-shadow:0_1px_10px_rgba(0,0,0,0.45)] hover:border-white/70 hover:bg-white/[0.09] hover:text-white"
+                : "border-foreground/20 bg-transparent text-foreground/80 hover:border-foreground/45 hover:bg-foreground/[0.04] hover:text-foreground"
             }`}
           >
             Kontakt
