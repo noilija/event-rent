@@ -16,7 +16,7 @@ const sans = Manrope({
 export const metadata: Metadata = {
   title: "Proslave na otvorenom | Prostor i oprema za iznajmljivanje",
   description:
-    "Iznajmljivanje dvorista, pagoda, paviljona i kompletne opreme za proslave na otvorenom, kod nas ili na lokaciji po vasem izboru.",
+    "Iznajmljivanje dvorišta, pagoda, paviljona i kompletne opreme za proslave na otvorenom, kod nas ili na lokaciji po vašem izboru.",
 };
 
 export default function RootLayout({

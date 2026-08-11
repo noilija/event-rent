@@ -18,11 +18,11 @@ export function HeroSection() {
                 Proslave na otvorenom
               </p>
               <h1 className="font-display text-[2.55rem] font-semibold leading-[0.98] text-white min-[380px]:text-[3rem] sm:text-7xl lg:text-[clamp(4rem,6vw,6.8rem)]">
-                Oprema za proslave na vasoj lokaciji
+                Oprema za proslave na vašoj lokaciji
               </h1>
               <p className="mx-auto mt-5 max-w-[20rem] text-[0.98rem] leading-7 text-white/90 sm:mt-8 sm:max-w-2xl sm:text-lg sm:leading-8">
                 Iznajmljivanje pagoda, paviljona, stolova, stolica,
-                barskih stolova i kompletnog seta za posluzivanje.
+                barskih stolova i kompletnog seta za posluživanje.
               </p>
               <div className="mt-7 flex flex-col justify-center gap-3 sm:mt-10 sm:flex-row">
                 <ButtonLink

@@ -107,18 +107,24 @@ export function TableSetCarousel({ setups }: TableSetCarouselProps) {
 
     setIsAnimating(true);
 
-    const activeTarget = direction === 1 ? turntablePositions.outgoing : turntablePositions.incoming;
+    const activeTarget =
+      direction === 1 ? turntablePositions.outgoing : turntablePositions.incoming;
     const incomingTarget = turntablePositions.active;
     const outgoingTarget = turntablePositions.rear;
-    const enteringLayer = direction === 1 ? incomingLayerRef.current : outgoingLayerRef.current;
+    const enteringLayer =
+      direction === 1 ? incomingLayerRef.current : outgoingLayerRef.current;
     const leavingLayer = activeLayerRef.current;
-    const rearLayer = direction === 1 ? outgoingLayerRef.current : incomingLayerRef.current;
+    const rearLayer =
+      direction === 1 ? outgoingLayerRef.current : incomingLayerRef.current;
 
     // All three layers travel around the same upper pivot. The background table
     // remains one physical object; only the place settings change their depth/position.
-    gsap.set([activeLayerRef.current, incomingLayerRef.current, outgoingLayerRef.current], {
-      transformOrigin: `${turntablePivot.x}% ${turntablePivot.y}%`,
-    });
+    gsap.set(
+      [activeLayerRef.current, incomingLayerRef.current, outgoingLayerRef.current],
+      {
+        transformOrigin: `${turntablePivot.x}% ${turntablePivot.y}%`,
+      }
+    );
 
     const timeline = gsap.timeline({
       defaults: { overwrite: "auto" },
@@ -139,11 +145,15 @@ export function TableSetCarousel({ setups }: TableSetCarouselProps) {
     <>
       <div className="mb-7 grid gap-4 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
         <div aria-live="polite">
-          <p className="mb-3 text-xs uppercase tracking-[0.24em] text-gold sm:mb-4 sm:text-sm sm:tracking-[0.32em]">Postavka stola</p>
+          <p className="mb-3 text-xs uppercase tracking-[0.24em] text-gold sm:mb-4 sm:text-sm sm:tracking-[0.32em]">
+            Postavka stola
+          </p>
           <h2 className="font-display text-3xl font-semibold leading-tight text-foreground sm:text-5xl sm:leading-none">
             {activeSetup.name}
           </h2>
-          <p className="mt-3 text-base text-muted sm:mt-4 sm:text-lg">{activeSetup.subtitle}</p>
+          <p className="mt-3 text-base text-muted sm:mt-4 sm:text-lg">
+            {activeSetup.subtitle}
+          </p>
         </div>
 
         <p className="max-w-2xl text-sm leading-6 text-muted sm:text-base sm:leading-7 lg:justify-self-end">
@@ -163,20 +173,39 @@ export function TableSetCarousel({ setups }: TableSetCarouselProps) {
           />
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_42%,transparent_35%,rgba(0,0,0,0.18)_100%)]" />
 
-          <SetLayer setup={incomingSetup} position={turntablePositions.incoming} layerRef={incomingLayerRef} />
-          <SetLayer setup={outgoingSetup} position={turntablePositions.outgoing} layerRef={outgoingLayerRef} />
-          <SetLayer setup={activeSetup} position={turntablePositions.active} layerRef={activeLayerRef} isActive />
+          <SetLayer
+            setup={incomingSetup}
+            position={turntablePositions.incoming}
+            layerRef={incomingLayerRef}
+          />
+          <SetLayer
+            setup={outgoingSetup}
+            position={turntablePositions.outgoing}
+            layerRef={outgoingLayerRef}
+          />
+          <SetLayer
+            setup={activeSetup}
+            position={turntablePositions.active}
+            layerRef={activeLayerRef}
+            isActive
+          />
 
           <div className="pointer-events-none absolute inset-x-0 bottom-0 z-50 h-40 bg-gradient-to-t from-black/65 to-transparent sm:h-44 sm:from-black/55" />
 
           <div className="absolute left-4 top-4 z-60 sm:left-7 sm:top-6">
-            <p className="text-xs uppercase tracking-[0.3em] text-white/60">Rotirajući sto</p>
+            <p className="text-xs uppercase tracking-[0.3em] text-white/60">
+              Rotirajući sto
+            </p>
           </div>
 
           <div className="absolute bottom-4 left-4 right-4 z-60 flex items-end justify-between gap-4 text-white sm:bottom-6 sm:left-7 sm:right-7">
             <div className="min-w-0">
-              <p className="font-display text-xl font-semibold leading-tight sm:text-2xl">{activeSetup.name}</p>
-              <p className="mt-1 text-xs leading-5 text-white/70 sm:text-sm">{activeSetup.subtitle}</p>
+              <p className="font-display text-xl font-semibold leading-tight sm:text-2xl">
+                {activeSetup.name}
+              </p>
+              <p className="mt-1 text-xs leading-5 text-white/70 sm:text-sm">
+                {activeSetup.subtitle}
+              </p>
             </div>
             <span className="shrink-0 text-xs uppercase tracking-[0.22em] text-gold sm:tracking-[0.28em]">
               {String(activeIndex + 1).padStart(2, "0")}

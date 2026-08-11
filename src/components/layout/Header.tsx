@@ -114,7 +114,7 @@ export function Header() {
         <a
           href="#pocetna"
           className="absolute left-1/2 top-1/2 block h-11 w-11 -translate-x-1/2 -translate-y-1/2 sm:h-14 sm:w-14"
-          aria-label="Pocetna"
+          aria-label="Početna"
           onClick={closeDrawer}
         >
           <Image
@@ -131,7 +131,9 @@ export function Header() {
           <a
             href="#kontakt"
             className={`border px-3 py-2 text-xs font-medium transition duration-200 sm:px-4 sm:text-sm ${
-              isDrawerCoveringButton ? "pointer-events-none opacity-0" : ""
+              isHeroVisible || isDrawerCoveringButton
+                ? "pointer-events-none translate-y-1 opacity-0"
+                : "translate-y-0 opacity-100"
             } ${
               isHeroVisible
                 ? "border-white/35 bg-white/[0.04] text-white/90 shadow-[0_10px_30px_rgba(0,0,0,0.14)] backdrop-blur-[2px] [text-shadow:0_1px_10px_rgba(0,0,0,0.45)] hover:border-white/70 hover:bg-white/[0.09] hover:text-white"

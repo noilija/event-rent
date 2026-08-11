@@ -1,13 +1,18 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { heroSlides, heroSlideshowConfig } from "./hero-slides";
 
 export function HeroSlideshow() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
+  const [isPaused] = useState(false);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const [slideProgress, setSlideProgress] = useState(0);
+  const elapsedMsRef = useRef(0);
+  const lastFrameMsRef = useRef<number | null>(null);
+  const slideDurationMs =
+    heroSlideshowConfig.displayDurationMs + heroSlideshowConfig.transitionDurationMs;
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -23,17 +28,42 @@ export function HeroSlideshow() {
 
   useEffect(() => {
     if (isPaused || prefersReducedMotion || heroSlides.length < 2) {
+      lastFrameMsRef.current = null;
       return;
     }
 
-    const interval = window.setInterval(() => {
-      setActiveIndex((currentIndex) => (currentIndex + 1) % heroSlides.length);
-    }, heroSlideshowConfig.displayDurationMs + heroSlideshowConfig.transitionDurationMs);
+    let frameId = 0;
 
-    return () => window.clearInterval(interval);
-  }, [isPaused, prefersReducedMotion]);
+    function updateProgress(timestamp: number) {
+      if (lastFrameMsRef.current === null) {
+        lastFrameMsRef.current = timestamp;
+      }
+
+      elapsedMsRef.current += timestamp - lastFrameMsRef.current;
+      lastFrameMsRef.current = timestamp;
+
+      if (elapsedMsRef.current >= slideDurationMs) {
+        elapsedMsRef.current = 0;
+        lastFrameMsRef.current = null;
+        setSlideProgress(0);
+        setActiveIndex((currentIndex) => (currentIndex + 1) % heroSlides.length);
+        frameId = window.requestAnimationFrame(updateProgress);
+        return;
+      }
+
+      setSlideProgress((elapsedMsRef.current / slideDurationMs) * 100);
+      frameId = window.requestAnimationFrame(updateProgress);
+    }
+
+    frameId = window.requestAnimationFrame(updateProgress);
+
+    return () => window.cancelAnimationFrame(frameId);
+  }, [heroSlides.length, isPaused, prefersReducedMotion, slideDurationMs]);
 
   function showSlide(index: number) {
+    elapsedMsRef.current = 0;
+    lastFrameMsRef.current = null;
+    setSlideProgress(0);
     setActiveIndex(index);
   }
 
@@ -41,10 +71,6 @@ export function HeroSlideshow() {
     <div
       className="relative isolate min-h-[100svh] sm:h-[82vh] sm:min-h-[560px] lg:h-[min(86vh,900px)]"
       aria-label="Fotografije Event Rent ponude"
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
-      onFocus={() => setIsPaused(true)}
-      onBlur={() => setIsPaused(false)}
     >
       <div className="hero-slideshow-media">
         {heroSlides.map((slide, index) => (
@@ -73,19 +99,35 @@ export function HeroSlideshow() {
         <span className="text-[0.64rem] uppercase tracking-[0.2em] text-white/85 sm:text-xs sm:tracking-[0.28em]">
           Event Rent
         </span>
+      </div>
 
-        <div className="flex items-center gap-2" aria-label="Izbor fotografije">
+      <div className="absolute right-2 top-[58%] z-10 flex -translate-y-1/2 flex-col items-end text-white sm:right-6 sm:top-1/2">
+        <div className="flex flex-col items-end" aria-label="Izbor fotografije">
           {heroSlides.map((slide, index) => (
             <button
               key={slide.src}
               type="button"
               onClick={() => showSlide(index)}
-              className={`h-2 transition-all duration-300 ${
-                index === activeIndex ? "w-8 bg-white" : "w-2 bg-white/55"
-              }`}
+              className="group flex h-8 w-14 items-center justify-end sm:h-7 sm:w-16"
               aria-label={`Prikaži fotografiju ${index + 1}`}
               aria-pressed={index === activeIndex}
-            />
+            >
+              <span
+                className={`relative h-px overflow-hidden transition-all duration-300 group-focus-visible:h-0.5 ${
+                  index === activeIndex
+                    ? "w-10 bg-white/35 shadow-[0_0_14px_rgba(244,199,102,0.26)] sm:w-12"
+                    : "w-4 bg-white/50 group-hover:w-8 group-hover:bg-white/80 sm:w-5 sm:group-hover:w-9"
+                }`}
+                aria-hidden="true"
+              >
+                {index === activeIndex ? (
+                  <span
+                    className="absolute inset-y-0 right-0 bg-[#f4c766]"
+                    style={{ width: `${slideProgress}%` }}
+                  />
+                ) : null}
+              </span>
+            </button>
           ))}
         </div>
       </div>

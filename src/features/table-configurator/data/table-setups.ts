@@ -4,9 +4,9 @@ export const tableSetups: TableSetup[] = [
   {
     id: "elegant-white",
     name: "Elegant White",
-    tagline: "Svetla, cista i svecana postavka.",
+    tagline: "Svetla, čista i svečana postavka.",
     description:
-      "Kombinacija belog stolnjaka, svetlog tanjira, kristalne case i zlatnog akcenta za miran premium utisak.",
+      "Kombinacija belog stolnjaka, svetlog tanjira, kristalne čaše i zlatnog akcenta za miran premium utisak.",
     plateId: "plate-ivory-rim",
     cutleryId: "cutlery-polished-gold",
     glassId: "glass-crystal-clear",
@@ -18,9 +18,9 @@ export const tableSetups: TableSetup[] = [
   {
     id: "black-gold",
     name: "Black & Gold",
-    tagline: "Kontrastna postavka za vecernje dogadjaje.",
+    tagline: "Kontrastna postavka za večernje događaje.",
     description:
-      "Tamna baza, zlatni escajg i svetli detalji stvaraju snazan, ali odmeren vizuelni efekat.",
+      "Tamna baza, zlatni escajg i svetli detalji stvaraju snažan, ali odmeren vizuelni efekat.",
     plateId: "plate-black-gold",
     cutleryId: "cutlery-polished-gold",
     glassId: "glass-crystal-clear",
@@ -32,9 +32,9 @@ export const tableSetups: TableSetup[] = [
   {
     id: "classic",
     name: "Classic",
-    tagline: "Uravnotezena postavka za porodicne proslave.",
+    tagline: "Uravnotežena postavka za porodične proslave.",
     description:
-      "Klasican raspored elemenata koji izgleda uredno, svecano i lako se uklapa u razlicite ambijente.",
+      "Klasičan raspored elemenata koji izgleda uredno, svečano i lako se uklapa u različite ambijente.",
     plateId: "plate-ivory-rim",
     cutleryId: "cutlery-polished-gold",
     glassId: "glass-crystal-clear",

@@ -18,7 +18,7 @@ export function EquipmentSection() {
             >
               <h3 className="text-lg font-semibold">{item}</h3>
               <p className="mt-3 text-sm leading-6 text-muted">
-                Elegantno resenje za proslave na otvorenom, prilagodjeno
+                Elegantno rešenje za proslave na otvorenom, prilagođeno
                 prostoru i broju gostiju.
               </p>
             </article>

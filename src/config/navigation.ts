@@ -1,5 +1,5 @@
 export const navigationItems = [
-  { label: "Pocetna", href: "#pocetna" },
+  { label: "Početna", href: "#pocetna" },
   // { label: "Prostor", href: "#prostor" },
   { label: "Oprema", href: "#oprema" },
   { label: "Setovi", href: "#setovi" },
