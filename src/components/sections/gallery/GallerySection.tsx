@@ -4,7 +4,6 @@ import Image from "next/image";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Container } from "@/components/ui/Container";
 import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
-import { heroSlides } from "@/components/sections/hero/hero-slides";
 
 type GalleryImageSize = {
   width: number;
@@ -17,24 +16,34 @@ type GalleryItem = GalleryImageSize & {
   src: string;
 };
 
-const galleryImageSizes: Record<string, GalleryImageSize> = {
-  "/slideshow/2S5A6173.jpg": { width: 5472, height: 3648 },
-  "/slideshow/2S5A6215.jpg": { width: 5472, height: 3648 },
-  "/slideshow/2S5A6302.jpg": { width: 5472, height: 3648 },
-  "/slideshow/2S5A6315.jpg": { width: 4997, height: 3331 },
-  "/slideshow/2S5A6325.jpg": { width: 5472, height: 3648 },
-  "/slideshow/2S5A6359.jpg": { width: 5472, height: 3648 },
-  "/slideshow/2S5A6419%20(1).jpg": { width: 3648, height: 5472 },
-  "/slideshow/2S5A6425.jpg": { width: 5472, height: 3648 },
-  "/slideshow/2S5A6471.jpg": { width: 5472, height: 3648 },
-  "/slideshow/2S5A6476.jpg": { width: 5472, height: 3648 },
-  "/slideshow/close-up-1.jpeg": { width: 1358, height: 802 },
-  "/slideshow/escajg-vreca.jpeg": { width: 912, height: 1368 },
-};
-
-const galleryItems: GalleryItem[] = heroSlides.map((slide) => ({
-  ...slide,
-  ...(galleryImageSizes[slide.src] ?? { width: 1600, height: 1067 }),
+const galleryItems: GalleryItem[] = ([
+  ["2S5A6170_result_result.webp", 1200, 800],
+  ["2S5A6173_result.webp", 1200, 800],
+  ["2S5A6177_result.webp", 1200, 800],
+  ["2S5A6180_result.webp", 1200, 800],
+  ["2S5A6187_result.webp", 1200, 800],
+  ["2S5A6215_result.webp", 1200, 800],
+  ["2S5A6223_result.webp", 1200, 800],
+  ["2S5A6249_result.webp", 1200, 800],
+  ["2S5A6273_result.webp", 1200, 708],
+  ["2S5A6283_result.webp", 1200, 800],
+  ["2S5A6305_result.webp", 800, 1200],
+  ["2S5A6307_result.webp", 1200, 800],
+  ["2S5A6314_result.webp", 1200, 800],
+  ["2S5A6375_result.webp", 1200, 800],
+  ["2S5A6419_result.webp", 800, 1200],
+  ["2S5A6437 (1)_result.webp", 800, 1200],
+  ["2S5A6439_result.webp", 1200, 800],
+  ["2S5A6471_result.webp", 1200, 800],
+  ["2S5A6485_result.webp", 1200, 800],
+  ["3 stola za convert_result.webp", 700, 525],
+  ["beli barski za convert_result.webp", 700, 525],
+  ["crni barski za convert_result.webp", 700, 525],
+] satisfies [string, number, number][]).map(([fileName, width, height]) => ({
+  src: `/gallery/${fileName}`,
+  alt: "Event Rent oprema i postavka za proslavu na otvorenom",
+  width,
+  height,
 }));
 
 function getColumnCount(width: number) {

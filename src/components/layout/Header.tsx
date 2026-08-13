@@ -58,7 +58,7 @@ export function Header() {
       }
 
       const nextSectionTop = nextSection.getBoundingClientRect().top;
-      const nextHeroVisible = nextSectionTop > 80;
+      const nextHeroVisible = nextSectionTop > 64;
 
       setIsHeroVisible(nextHeroVisible);
       if (nextHeroVisible) {
@@ -89,11 +89,11 @@ export function Header() {
           : "border-b border-line bg-background/80 backdrop-blur"
       }`}
     >
-      <nav className="relative z-20 flex h-16 w-full items-center justify-between sm:h-20">
+      <nav className="relative z-20 flex h-14 w-full items-center justify-between sm:h-16">
         <button
           type="button"
           onClick={toggleDrawer}
-          className={`flex h-10 w-10 items-center justify-center border transition sm:h-11 sm:w-11 ${
+          className={`flex h-9 w-9 items-center justify-center border transition sm:h-10 sm:w-10 ${
             isDrawerCoveringButton
               ? "border-transparent bg-transparent text-foreground shadow-none"
               : isHeroVisible
@@ -113,7 +113,11 @@ export function Header() {
 
         <a
           href="#pocetna"
-          className="absolute left-1/2 top-1/2 block h-11 w-11 -translate-x-1/2 -translate-y-1/2 sm:h-14 sm:w-14"
+          className={`absolute left-1/2 block -translate-x-1/2 -translate-y-1/2 transition-[top,width,height] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+            isHeroVisible && !isDrawerCoveringButton
+              ? "top-[72%] h-[4.125rem] w-[4.125rem] sm:h-[4.75rem] sm:w-[4.75rem]"
+              : "top-1/2 h-9 w-9 sm:h-11 sm:w-11"
+          }`}
           aria-label="Početna"
           onClick={closeDrawer}
         >
@@ -122,7 +126,7 @@ export function Header() {
             alt="Event Rent logo"
             fill
             priority
-            sizes="56px"
+            sizes="76px"
             className="object-contain"
           />
         </a>
@@ -130,7 +134,7 @@ export function Header() {
         <div className="flex items-center">
           <a
             href="#kontakt"
-            className={`border px-3 py-2 text-xs font-medium transition duration-200 sm:px-4 sm:text-sm ${
+            className={`border px-3 py-1.5 text-[0.7rem] font-medium transition duration-200 sm:px-3.5 sm:py-2 sm:text-xs ${
               isHeroVisible || isDrawerCoveringButton
                 ? "pointer-events-none translate-y-1 opacity-0"
                 : "translate-y-0 opacity-100"
@@ -146,7 +150,7 @@ export function Header() {
       </nav>
 
       <div
-        className={`fixed left-0 top-0 z-10 h-screen w-[min(84vw,320px)] border-r border-line bg-surface pt-16 shadow-[18px_0_48px_rgba(55,42,20,0.16)] transition-transform duration-300 ease-out sm:pt-20 ${
+        className={`fixed left-0 top-0 z-10 h-screen w-[min(84vw,320px)] border-r border-line bg-surface pt-14 shadow-[18px_0_48px_rgba(55,42,20,0.16)] transition-transform duration-300 ease-out sm:pt-16 ${
           isDrawerOpen ? "translate-x-0" : "-translate-x-full"
         }`}
         id="site-navigation-drawer"

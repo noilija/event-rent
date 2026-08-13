@@ -58,7 +58,7 @@ export function HeroSlideshow() {
     frameId = window.requestAnimationFrame(updateProgress);
 
     return () => window.cancelAnimationFrame(frameId);
-  }, [heroSlides.length, isPaused, prefersReducedMotion, slideDurationMs]);
+  }, [isPaused, prefersReducedMotion, slideDurationMs]);
 
   function showSlide(index: number) {
     elapsedMsRef.current = 0;
@@ -101,7 +101,7 @@ export function HeroSlideshow() {
         </span>
       </div>
 
-      <div className="absolute right-2 top-[58%] z-10 flex -translate-y-1/2 flex-col items-end text-white sm:right-6 sm:top-1/2">
+      <div className="absolute right-6 top-1/2 z-10 hidden -translate-y-1/2 flex-col items-end text-white sm:flex">
         <div className="flex flex-col items-end" aria-label="Izbor fotografije">
           {heroSlides.map((slide, index) => (
             <button

@@ -50,15 +50,18 @@ body {
 }
 
 section {
-  scroll-margin-top: 5rem;
+  scroll-margin-top: 4rem;
 }
 
 #pocetna {
   scroll-margin-top: 0;
 }
 
-main > section:not(#pocetna) {
+.post-hero-content {
   position: relative;
   z-index: 10;
   background: var(--background);
+  isolation: isolate;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }

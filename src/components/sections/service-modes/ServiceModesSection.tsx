@@ -19,7 +19,7 @@ export function ServiceModesSection() {
           <article className="border border-line bg-surface p-8">
             <h3 className="font-display text-3xl">Oprema kod vas</h3>
             <p className="mt-4 leading-7 text-muted">
-              Pagode, stolovi, stolice, barski stolovi i setovi za
+              Pagode, stolovi, stolice, barski stolovi i oprema za
               posluživanje mogu se organizovati na lokaciji po vašem izboru.
             </p>
           </article>

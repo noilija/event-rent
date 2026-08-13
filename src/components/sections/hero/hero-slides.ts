@@ -6,68 +6,78 @@ export type HeroSlide = {
 
 export const heroSlides: HeroSlide[] = [
   {
-    src: "/slideshow/2S5A6173.jpg",
-    alt: "Svečano postavljen sto sa tanjirima, escajgom i čašama",
+    src: "/slideshow/2S5A6172_result.webp",
+    alt: "Svečano postavljen sto za proslavu na otvorenom",
     objectPosition: "center 48%",
   },
   {
-    src: "/slideshow/2S5A6215.jpg",
+    src: "/slideshow/2S5A6215_result.webp",
+    alt: "Detalj elegantne postavke stola za goste",
+    objectPosition: "center 52%",
+  },
+  {
+    src: "/slideshow/2S5A6273_result.webp",
+    alt: "Oprema za događaj raspoređena u dvorištu",
+    objectPosition: "center 48%",
+  },
+  {
+    src: "/slideshow/2S5A6283_result.webp",
+    alt: "Svečana postavka sa stolovima i stolicama",
+    objectPosition: "center 50%",
+  },
+  {
+    src: "/slideshow/2S5A6307_result.webp",
     alt: "Detalj dekorisanog stola za proslavu",
+    objectPosition: "center 50%",
+  },
+  {
+    src: "/slideshow/2S5A6365_result.webp",
+    alt: "Elegantno uređena proslava na otvorenom",
+    objectPosition: "center 50%",
+  },
+  {
+    src: "/slideshow/2S5A6408_result.webp",
+    alt: "Sto i stolice spremni za svečani događaj",
+    objectPosition: "center 50%",
+  },
+  {
+    src: "/slideshow/2S5A6437 (1)_result.webp",
+    alt: "Vertikalni prikaz detalja svečane postavke",
     objectPosition: "center 52%",
   },
   {
-    src: "/slideshow/2S5A6302.jpg",
-    alt: "Elegantna postavka za event sa dekorativnim detaljima",
-    objectPosition: "center 48%",
-  },
-  {
-    src: "/slideshow/2S5A6315.jpg",
-    alt: "Event Rent oprema na svečano dekorisanom stolu",
-    objectPosition: "center 46%",
-  },
-  {
-    src: "/slideshow/2S5A6325.jpg",
-    alt: "Postavljen sto sa tanjirima, čašama i dekoracijom",
+    src: "/slideshow/2S5A6439_result.webp",
+    alt: "Uređena postavka stola sa dekorativnim detaljima",
     objectPosition: "center 50%",
   },
   {
-    src: "/slideshow/2S5A6359.jpg",
-    alt: "Detalj svečane dekoracije i stonog pribora",
+    src: "/slideshow/2S5A6471_result.webp",
+    alt: "Oprema za proslavu pripremljena za goste",
     objectPosition: "center 50%",
   },
   {
-    src: "/slideshow/2S5A6419%20(1).jpg",
-    alt: "Dekorisana event postavka sa tanjirima i čašama",
+    src: "/slideshow/2S5A6485_result.webp",
+    alt: "Ambijent proslave sa kompletnom Event Rent opremom",
     objectPosition: "center 50%",
   },
   {
-    src: "/slideshow/2S5A6425.jpg",
-    alt: "Svečani sto pripremljen za goste",
-    objectPosition: "center 48%",
-  },
-  {
-    src: "/slideshow/2S5A6471.jpg",
-    alt: "Elegantna postavka stola za proslavu",
-    objectPosition: "center 52%",
-  },
-  {
-    src: "/slideshow/2S5A6476.jpg",
-    alt: "Event dekoracija sa pažljivo složenim stolom",
+    src: "/slideshow/3 stola za convert_result.webp",
+    alt: "Tri barska stola za događaj na otvorenom",
     objectPosition: "center 50%",
   },
   {
-    src: "/slideshow/close-up-1.jpeg",
-    alt: "Bliski prikaz postavljenog stola sa čašama i dekoracijom",
-    objectPosition: "center 48%",
+    src: "/slideshow/beli barski za convert_result.webp",
+    alt: "Beli barski sto za proslave",
+    objectPosition: "center 50%",
   },
   {
-    src: "/slideshow/escajg-vreca.jpeg",
-    alt: "Svečani pribor složen u platnenoj vreći na tanjiru",
-    objectPosition: "center 48%",
+    src: "/slideshow/crni barski za convert_result.webp",
+    alt: "Crni barski sto za proslave",
+    objectPosition: "center 50%",
   },
 ];
 
 export const heroSlideshowConfig = {
-  displayDurationMs: 5000,
+  displayDurationMs: 1800,
   transitionDurationMs: 1200,
 };
