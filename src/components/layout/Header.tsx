@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import type { MouseEvent } from "react";
 import { useEffect, useRef, useState } from "react";
 import { navigationItems } from "@/config/navigation";
 
@@ -45,6 +46,36 @@ export function Header() {
     }
 
     openDrawer();
+  }
+
+  function handleNavigation(
+    event: MouseEvent<HTMLAnchorElement>,
+    href: string,
+  ) {
+    const targetId = href.slice(1);
+    const target = document.getElementById(targetId);
+
+    if (!target) return;
+
+    event.preventDefault();
+    closeDrawer();
+
+    const behavior = window.matchMedia("(prefers-reduced-motion: reduce)")
+      .matches
+      ? "auto"
+      : "smooth";
+
+    if (targetId === "pocetna") {
+      // The hero is sticky, so scrollIntoView can consider it visible even when
+      // the page content is covering it.
+      window.scrollTo({ top: 0, behavior });
+    } else {
+      target.scrollIntoView({ behavior, block: "start" });
+    }
+
+    if (window.location.hash !== href) {
+      window.history.pushState(null, "", href);
+    }
   }
 
   useEffect(() => {
@@ -119,7 +150,7 @@ export function Header() {
               : "top-1/2 h-9 w-9 sm:h-11 sm:w-11"
           }`}
           aria-label="Početna"
-          onClick={closeDrawer}
+          onClick={(event) => handleNavigation(event, "#pocetna")}
         >
           <Image
             src="/brand/logo.png"
@@ -160,8 +191,8 @@ export function Header() {
             <a
               key={item.href}
               href={item.href}
-              onClick={closeDrawer}
-              className="border-b border-line px-5 py-4 font-display text-2xl text-foreground transition hover:bg-surface-alt hover:text-gold sm:px-6 sm:py-5 sm:text-3xl"
+              onClick={(event) => handleNavigation(event, item.href)}
+              className="border-b border-line px-5 py-4 font-sans text-2xl text-foreground transition hover:bg-surface-alt hover:text-gold sm:px-6 sm:py-5 sm:text-3xl"
             >
               {item.label}
             </a>

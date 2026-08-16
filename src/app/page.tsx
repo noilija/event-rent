@@ -5,6 +5,7 @@ import { EquipmentSection } from "@/components/sections/equipment/EquipmentSecti
 import { GallerySection } from "@/components/sections/gallery/GallerySection";
 import { HeroSection } from "@/components/sections/hero/HeroSection";
 import { ServiceBenefitsSection } from "@/components/sections/services/ServiceBenefitsSection";
+import { galleryItems } from "@/data/gallery.generated";
 
 export default function Home() {
   return (
@@ -15,7 +16,7 @@ export default function Home() {
         <div className="post-hero-content">
           <EquipmentSection />
           <ServiceBenefitsSection />
-          <GallerySection />
+          <GallerySection items={galleryItems} />
           <ContactSection />
         </div>
       </main>

@@ -8,6 +8,8 @@
   --surface: #fffdf8;
   --surface-alt: #f0e9de;
   --line: rgba(75, 57, 34, 0.16);
+  --font-display: var(--font-cormorant);
+  --font-sans: var(--font-manrope);
 }
 
 @theme inline {
@@ -49,12 +51,18 @@ body {
   overflow: hidden;
 }
 
-section {
-  scroll-margin-top: 4rem;
-}
-
 #pocetna {
   scroll-margin-top: 0;
+}
+
+.section-scroll-target {
+  scroll-margin-top: 4.25rem;
+}
+
+@media (min-width: 640px) {
+  .section-scroll-target {
+    scroll-margin-top: 5rem;
+  }
 }
 
 .post-hero-content {
@@ -64,4 +72,111 @@ section {
   isolation: isolate;
   transform: translateZ(0);
   backface-visibility: hidden;
+}
+
+.gallery-collage {
+  position: relative;
+  overflow: hidden;
+  padding-block: clamp(1rem, 1.8vw, 1.6rem);
+  font-size: clamp(0.78rem, 0.92vw, 0.98rem);
+}
+
+.gallery-collage::before,
+.gallery-collage::after {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 4;
+  width: clamp(1rem, 5vw, 5rem);
+  content: "";
+  pointer-events: none;
+}
+
+.gallery-collage::before {
+  left: 0;
+  background: linear-gradient(to right, var(--background), transparent);
+}
+
+.gallery-collage::after {
+  right: 0;
+  background: linear-gradient(to left, var(--background), transparent);
+}
+
+.gallery-collage-track {
+  display: flex;
+  width: max-content;
+  animation-name: gallery-collage-left;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-delay: -19s;
+  will-change: transform;
+}
+
+.gallery-collage-group {
+  position: relative;
+  flex: none;
+}
+
+.gallery-collage-item {
+  position: absolute;
+  display: block;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+  cursor: zoom-in;
+}
+
+.gallery-collage-item:hover {
+  z-index: 2;
+}
+
+@keyframes gallery-collage-left {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@media (max-width: 639px) {
+  .gallery-collage {
+    padding-block: 0.8rem;
+    font-size: 0.72rem;
+  }
+
+  .gallery-collage::before,
+  .gallery-collage::after {
+    width: 1.25rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gallery-collage {
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .gallery-collage::-webkit-scrollbar {
+    display: none;
+  }
+
+  .gallery-collage::before,
+  .gallery-collage::after {
+    display: none;
+  }
+
+  .gallery-collage-track {
+    animation: none;
+    transform: none;
+    will-change: auto;
+  }
+
+  .gallery-collage-clone {
+    display: none;
+  }
 }
