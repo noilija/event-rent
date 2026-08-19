@@ -459,7 +459,7 @@ export function GallerySection({ items }: GallerySectionProps) {
         <div id="galerija" className="section-scroll-target">
           <SectionEyebrow>Galerija</SectionEyebrow>
           <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-            <h2 className="max-w-3xl font-display text-4xl font-semibold leading-tight sm:text-5xl">
+            <h2 className="max-w-3xl font-handwritten text-5xl leading-[0.9] sm:text-6xl">
               Detalji koji stvaraju utisak
             </h2>
             <p className="max-w-md text-sm leading-6 text-muted sm:text-right">

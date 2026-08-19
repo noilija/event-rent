@@ -120,6 +120,58 @@ export function Header() {
           : "border-b border-line bg-background/80 backdrop-blur"
       }`}
     >
+      <svg
+        aria-hidden="true"
+        className="pointer-events-none absolute h-0 w-0"
+        focusable="false"
+      >
+        <defs>
+          <filter
+            id="logo-r-white-outline"
+            x="-8%"
+            y="-8%"
+            width="116%"
+            height="116%"
+            colorInterpolationFilters="sRGB"
+          >
+            <feColorMatrix
+              in="SourceGraphic"
+              type="matrix"
+              values="
+                0 0 0 0 0
+                0 0 0 0 0
+                0 0 0 0 0
+                -2 -2 -2 1 0
+              "
+              result="black-r-mask"
+            />
+            <feMorphology
+              in="black-r-mask"
+              operator="dilate"
+              radius="0.9"
+              result="expanded-r"
+            />
+            <feComposite
+              in="expanded-r"
+              in2="black-r-mask"
+              operator="out"
+              result="r-outline-mask"
+            />
+            <feFlood floodColor="#ffffff" result="outline-color" />
+            <feComposite
+              in="outline-color"
+              in2="r-outline-mask"
+              operator="in"
+              result="white-r-outline"
+            />
+            <feMerge>
+              <feMergeNode in="white-r-outline" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
+      </svg>
+
       <nav className="relative z-20 flex h-14 w-full items-center justify-between sm:h-16">
         <button
           type="button"
@@ -159,6 +211,7 @@ export function Header() {
             priority
             sizes="76px"
             className="object-contain"
+            style={{ filter: "url(#logo-r-white-outline)" }}
           />
         </a>
 

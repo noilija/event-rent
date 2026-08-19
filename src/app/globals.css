@@ -9,6 +9,7 @@
   --surface-alt: #f0e9de;
   --line: rgba(75, 57, 34, 0.16);
   --font-display: var(--font-cormorant);
+  --font-handwritten: var(--font-allura);
   --font-sans: var(--font-manrope);
 }
 
@@ -22,10 +23,14 @@
   --color-line: var(--line);
   --font-sans: var(--font-sans);
   --font-display: var(--font-display);
+  --font-handwritten: var(--font-handwritten);
 }
 
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
+  border-radius: 0;
 }
 
 html {

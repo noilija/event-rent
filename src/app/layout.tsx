@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Manrope } from "next/font/google";
+import { Allura, Cormorant_Garamond, Manrope } from "next/font/google";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -13,7 +13,13 @@ const manrope = Manrope({
   subsets: ["latin", "latin-ext"],
 });
 
-const fontVariables = `${cormorant.variable} ${manrope.variable}`;
+const allura = Allura({
+  variable: "--font-allura",
+  subsets: ["latin"],
+  weight: "400",
+});
+
+const fontVariables = `${cormorant.variable} ${manrope.variable} ${allura.variable}`;
 
 const websiteStructuredData = {
   "@context": "https://schema.org",
@@ -83,11 +89,13 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  /*
   const fontDevTools =
     process.env.NODE_ENV === "development"
       ? await import("@/components/dev/FontDevTools")
       : null;
   const FontDevTools = fontDevTools?.FontDevTools;
+  */
 
   return (
     <html lang="sr-Latn" className={fontVariables}>
@@ -105,7 +113,8 @@ export default async function RootLayout({
           }}
         />
         {children}
-        {FontDevTools && <FontDevTools />}
+        {/* Privremeno isključen birač fontova za razvoj. */}
+        {/* {FontDevTools && <FontDevTools />} */}
       </body>
     </html>
   );
