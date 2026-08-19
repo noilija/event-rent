@@ -51,6 +51,36 @@ body {
   overflow: hidden;
 }
 
+.hero-slide-progress {
+  transform: scaleX(0);
+  transform-origin: right center;
+  animation-name: hero-slide-progress;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+  will-change: transform;
+}
+
+@keyframes hero-slide-progress {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.hero-slide-enter {
+  animation-name: hero-slide-enter;
+  animation-timing-function: ease;
+}
+
+@keyframes hero-slide-enter {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
 #pocetna {
   scroll-margin-top: 0;
 }
@@ -156,6 +186,16 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .hero-slide-progress {
+    animation: none;
+    transform: scaleX(0);
+    will-change: auto;
+  }
+
+  .hero-slide-enter {
+    animation: none;
+  }
+
   .gallery-collage {
     overflow-x: auto;
     scrollbar-width: none;

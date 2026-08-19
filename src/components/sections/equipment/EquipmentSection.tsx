@@ -124,8 +124,8 @@ export function EquipmentSection() {
             Oprema koju nudimo
           </h2>
           <p className="mt-4 max-w-2xl text-sm leading-6 text-muted sm:text-base sm:leading-7">
-            Pažljivo odabrana oprema za elegantne, udobne i besprekorno
-            organizovane proslave na otvorenom.
+            Pažljivo odabrana oprema za venčanja, rođendane i druge proslave,
+            uz dostavu i postavku u Vranju i okolini.
           </p>
         </div>
 

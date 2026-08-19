@@ -31,7 +31,8 @@ export function ContactSection() {
                 </h2>
                 <p className="mt-5 max-w-2xl leading-7 text-muted sm:mt-6 sm:leading-8">
                   Javite nam da li proslavu planirate kod nas ili na vašoj
-                  lokaciji, datum događaja i okviran broj gostiju.
+                  lokaciji u Vranju i okolini, datum događaja i okviran broj
+                  gostiju.
                 </p>
 
                 <button

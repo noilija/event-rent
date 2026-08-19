@@ -1,18 +1,22 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { heroSlides, heroSlideshowConfig } from "./hero-slides";
 
 export function HeroSlideshow() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isPaused] = useState(false);
+  const [previousIndex, setPreviousIndex] = useState<number | null>(null);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
-  const [slideProgress, setSlideProgress] = useState(0);
-  const elapsedMsRef = useRef(0);
-  const lastFrameMsRef = useRef<number | null>(null);
+  const [slideRunId, setSlideRunId] = useState(0);
   const slideDurationMs =
     heroSlideshowConfig.displayDurationMs + heroSlideshowConfig.transitionDurationMs;
+  const nextIndex = (activeIndex + 1) % heroSlides.length;
+  const visibleSlideIndexes = [
+    ...(previousIndex !== null && previousIndex !== activeIndex ? [previousIndex] : []),
+    activeIndex,
+    ...(nextIndex !== activeIndex && nextIndex !== previousIndex ? [nextIndex] : []),
+  ];
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -27,44 +31,37 @@ export function HeroSlideshow() {
   }, []);
 
   useEffect(() => {
-    if (isPaused || prefersReducedMotion || heroSlides.length < 2) {
-      lastFrameMsRef.current = null;
+    if (prefersReducedMotion || heroSlides.length < 2) {
       return;
     }
 
-    let frameId = 0;
+    const timeoutId = window.setTimeout(() => {
+      setPreviousIndex(activeIndex);
+      setActiveIndex(nextIndex);
+    }, slideDurationMs);
 
-    function updateProgress(timestamp: number) {
-      if (lastFrameMsRef.current === null) {
-        lastFrameMsRef.current = timestamp;
-      }
+    return () => window.clearTimeout(timeoutId);
+  }, [activeIndex, nextIndex, prefersReducedMotion, slideDurationMs, slideRunId]);
 
-      elapsedMsRef.current += timestamp - lastFrameMsRef.current;
-      lastFrameMsRef.current = timestamp;
-
-      if (elapsedMsRef.current >= slideDurationMs) {
-        elapsedMsRef.current = 0;
-        lastFrameMsRef.current = null;
-        setSlideProgress(0);
-        setActiveIndex((currentIndex) => (currentIndex + 1) % heroSlides.length);
-        frameId = window.requestAnimationFrame(updateProgress);
-        return;
-      }
-
-      setSlideProgress((elapsedMsRef.current / slideDurationMs) * 100);
-      frameId = window.requestAnimationFrame(updateProgress);
+  useEffect(() => {
+    if (previousIndex === null) {
+      return;
     }
 
-    frameId = window.requestAnimationFrame(updateProgress);
+    const timeoutId = window.setTimeout(() => {
+      setPreviousIndex(null);
+    }, heroSlideshowConfig.transitionDurationMs);
 
-    return () => window.cancelAnimationFrame(frameId);
-  }, [isPaused, prefersReducedMotion, slideDurationMs]);
+    return () => window.clearTimeout(timeoutId);
+  }, [activeIndex, previousIndex]);
 
   function showSlide(index: number) {
-    elapsedMsRef.current = 0;
-    lastFrameMsRef.current = null;
-    setSlideProgress(0);
-    setActiveIndex(index);
+    if (index !== activeIndex) {
+      setPreviousIndex(activeIndex);
+      setActiveIndex(index);
+    }
+
+    setSlideRunId((currentRunId) => currentRunId + 1);
   }
 
   return (
@@ -73,26 +70,35 @@ export function HeroSlideshow() {
       aria-label="Fotografije Event Rent ponude"
     >
       <div className="hero-slideshow-media">
-        {heroSlides.map((slide, index) => (
-          <Image
-            key={slide.src}
-            src={slide.src}
-            alt={slide.alt}
-            fill
-            priority={index === 0}
-            sizes="100vw"
-            className="object-cover motion-reduce:transition-none"
-            style={{
-              opacity: index === activeIndex ? 1 : 0,
-              objectPosition: slide.objectPosition,
-              transitionDuration: `${heroSlideshowConfig.transitionDurationMs}ms`,
-              transitionProperty: "opacity",
-            }}
-            aria-hidden={index !== activeIndex}
-          />
-        ))}
+        {visibleSlideIndexes.map((index) => {
+          const slide = heroSlides[index];
+          const isActive = index === activeIndex;
 
-        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.58),rgba(0,0,0,0.36)_38%,rgba(0,0,0,0.58)),radial-gradient(ellipse_at_center,rgba(0,0,0,0.08),rgba(0,0,0,0.5))] sm:bg-[linear-gradient(180deg,rgba(0,0,0,0.34),rgba(0,0,0,0.48)),radial-gradient(ellipse_at_center,rgba(0,0,0,0.12),rgba(0,0,0,0.46))]" />
+          return (
+            <Image
+              key={slide.src}
+              src={slide.src}
+              alt={slide.alt}
+              fill
+              priority={index === 0}
+              sizes="100vw"
+              className={`object-cover motion-reduce:transition-none ${
+                isActive && previousIndex !== null ? "hero-slide-enter" : ""
+              }`}
+              style={{
+                zIndex: isActive ? 2 : index === previousIndex ? 1 : 0,
+                opacity: isActive ? 1 : 0,
+                objectPosition: slide.objectPosition,
+                transitionDuration: `${heroSlideshowConfig.transitionDurationMs}ms`,
+                transitionProperty: "opacity",
+                animationDuration: `${heroSlideshowConfig.transitionDurationMs}ms`,
+              }}
+              aria-hidden={!isActive}
+            />
+          );
+        })}
+
+        <div className="pointer-events-none absolute inset-0 z-[3] bg-[linear-gradient(180deg,rgba(0,0,0,0.58),rgba(0,0,0,0.36)_38%,rgba(0,0,0,0.58)),radial-gradient(ellipse_at_center,rgba(0,0,0,0.08),rgba(0,0,0,0.5))] sm:bg-[linear-gradient(180deg,rgba(0,0,0,0.34),rgba(0,0,0,0.48)),radial-gradient(ellipse_at_center,rgba(0,0,0,0.12),rgba(0,0,0,0.46))]" />
       </div>
 
       <div className="absolute bottom-4 left-5 right-5 z-10 flex items-center justify-between gap-5 sm:bottom-7 sm:left-7 sm:right-7">
@@ -122,8 +128,9 @@ export function HeroSlideshow() {
               >
                 {index === activeIndex ? (
                   <span
-                    className="absolute inset-y-0 right-0 bg-[#f4c766]"
-                    style={{ width: `${slideProgress}%` }}
+                    key={slideRunId}
+                    className="hero-slide-progress absolute inset-0 bg-[#f4c766]"
+                    style={{ animationDuration: `${slideDurationMs}ms` }}
                   />
                 ) : null}
               </span>
