@@ -127,7 +127,7 @@ export function Header() {
       >
         <defs>
           <filter
-            id="logo-r-white-outline"
+            id="logo-r-cream-outline"
             x="-8%"
             y="-8%"
             width="116%"
@@ -157,7 +157,7 @@ export function Header() {
               operator="out"
               result="r-outline-mask"
             />
-            <feFlood floodColor="#ffffff" result="outline-color" />
+            <feFlood floodColor="#f7f3eb" result="outline-color" />
             <feComposite
               in="outline-color"
               in2="r-outline-mask"
@@ -211,7 +211,7 @@ export function Header() {
             priority
             sizes="76px"
             className="object-contain"
-            style={{ filter: "url(#logo-r-white-outline)" }}
+            style={{ filter: "url(#logo-r-cream-outline)" }}
           />
         </a>
 

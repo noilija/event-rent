@@ -35,7 +35,7 @@ export function ContactSection() {
                   gostiju.
                 </p>
 
-                <button
+                {/* <button
                   type="button"
                   disabled
                   title="Stranica za kreiranje ponude biće uskoro dostupna."
@@ -43,7 +43,7 @@ export function ContactSection() {
                 >
                   Kreiraj ponudu
                   <ArrowRight aria-hidden="true" className="size-4" />
-                </button>
+                </button> */}
               </div>
             </div>
 
